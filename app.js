@@ -115,7 +115,6 @@ function showToast(msg, isError = false) {
   toast._timer = setTimeout(() => toast.classList.remove('show'), 3500);
 }
 
-/* ==================== OYLAMA UI ==================== */
 function renderVoteResults() {
   const total = (currentVoteData.goku || 0) + (currentVoteData.azrak || 0);
   const gokuPct = total > 0 ? Math.round((currentVoteData.goku / total) * 100) : 0;
@@ -193,7 +192,6 @@ async function checkIfVoted() {
   }
 }
 
-/* ==================== OY VERME (GERÇEK FIREBASE) ==================== */
 async function castVote(characterId) {
   if (!currentUser || hasVoted || isVoting) return;
 
@@ -255,7 +253,6 @@ async function castVote(characterId) {
   }
 }
 
-/* ==================== OYLAMA BAŞLAT ==================== */
 function initVoting() {
   const comparisonId = COMPARISONS[0].id;
   const voteDocRef = doc(db, 'votes', comparisonId);
@@ -281,7 +278,6 @@ function initVoting() {
   if (btnAzrak) btnAzrak.onclick = () => castVote('azrak');
 }
 
-/* ==================== AUTH ==================== */
 onAuthStateChanged(auth, (user) => {
   currentUser = user;
   authReady = true;
@@ -299,7 +295,6 @@ signInAnonymously(auth).catch((error) => {
   updateVoteButtons();
 });
 
-/* ==================== PROFİL KARTLARI ==================== */
 function renderProfileCards() {
   const grid = document.getElementById('profileGrid');
   if (!grid) return;
@@ -325,7 +320,6 @@ function renderProfileCards() {
   });
 }
 
-/* ==================== VS KARŞILAŞTIRMA ==================== */
 function renderComparisons() {
   const wrapper = document.getElementById('vsWrapper');
   if (!wrapper) return;
@@ -384,7 +378,6 @@ function renderComparisons() {
   updateVoteButtons();
 }
 
-/* ==================== PROFİL MODAL ==================== */
 const profileModal = document.getElementById('profileModal');
 const profileModalInner = document.getElementById('profileModalInner');
 const profileModalClose = document.getElementById('profileModalClose');
@@ -432,7 +425,6 @@ profileModalClose.addEventListener('click', closeProfileModal);
 profileModal.addEventListener('click', (e) => { if (e.target === profileModal) closeProfileModal(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && profileModal.classList.contains('active')) closeProfileModal(); });
 
-/* ==================== MOBİL MENÜ ==================== */
 const menuToggle = document.getElementById('menuToggle');
 const mainNav = document.getElementById('mainNav');
 menuToggle.addEventListener('click', () => mainNav.classList.toggle('open'));
@@ -441,7 +433,6 @@ mainNav.querySelectorAll('a').forEach(link => {
 });
 window.addEventListener('resize', () => { if (window.innerWidth > 768) mainNav.classList.remove('open'); });
 
-/* ==================== LIGHTBOX ==================== */
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
 const lightboxClose = document.getElementById('lightboxClose');
@@ -468,7 +459,6 @@ lightboxClose.addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox(); });
 
-/* ==================== SMOOTH SCROLL ==================== */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     const href = this.getAttribute('href');
@@ -478,7 +468,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-/* ==================== BAŞLAT ==================== */
 document.addEventListener('DOMContentLoaded', () => {
   renderProfileCards();
   renderComparisons();
