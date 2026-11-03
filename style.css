@@ -1,4 +1,3 @@
-/* ==================== TEMEL RESET ==================== */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -13,6 +12,8 @@
   --accent: #8146C8;
   --accent-soft: rgba(129, 70, 200, 0.25);
   --border: rgba(201, 165, 255, 0.15);
+  --goku-blue: #3B82F6;
+  --azrak-purple: #A855F7;
 }
 
 html {
@@ -41,7 +42,6 @@ a {
   text-decoration: none;
 }
 
-/* ==================== HEADER ==================== */
 .site-header {
   position: sticky;
   top: 0;
@@ -115,7 +115,6 @@ a {
   color: var(--heading);
 }
 
-/* ==================== HERO ==================== */
 .hero {
   position: relative;
   width: 100%;
@@ -162,7 +161,6 @@ a {
   text-shadow: 0 1px 12px rgba(0,0,0,0.9);
 }
 
-/* ==================== CONTAINER ==================== */
 .container {
   max-width: 1100px;
   margin: 0 auto;
@@ -179,7 +177,6 @@ a {
   padding: 0;
 }
 
-/* ==================== SECTIONS ==================== */
 .wiki-section {
   margin-top: 56px;
 }
@@ -200,7 +197,6 @@ a {
   opacity: 0.85;
 }
 
-/* ==================== CARDS ==================== */
 .card {
   background-color: var(--card);
   border: 1px solid var(--border);
@@ -232,7 +228,6 @@ a {
   margin-bottom: 0;
 }
 
-/* ==================== INFO GRID ==================== */
 .info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -262,7 +257,6 @@ a {
   font-weight: 600;
 }
 
-/* ==================== TWO COLUMN ==================== */
 .two-col {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
@@ -276,7 +270,6 @@ a {
   object-fit: cover;
 }
 
-/* ==================== FEATURE LIST ==================== */
 .feature-list {
   list-style: none;
   margin: 8px 0 4px;
@@ -300,7 +293,6 @@ a {
   background-color: var(--accent);
 }
 
-/* ==================== EMBLEM CARD ==================== */
 .emblem-card {
   display: flex;
   align-items: center;
@@ -314,7 +306,6 @@ a {
   flex-shrink: 0;
 }
 
-/* ==================== GRID LAYOUTS ==================== */
 .grid-3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -332,7 +323,6 @@ a {
   margin-bottom: 0;
 }
 
-/* ==================== WEAPON CARD ==================== */
 .weapon-card {
   display: grid;
   grid-template-columns: 280px 1fr;
@@ -346,7 +336,6 @@ a {
   object-fit: cover;
 }
 
-/* ==================== FULL IMG ==================== */
 .full-img {
   width: 100%;
   border-radius: 10px;
@@ -363,12 +352,10 @@ a {
   font-style: italic;
 }
 
-/* ==================== ZARVEX CONTENT ==================== */
 .zarvex-content {
   margin-top: 4px;
 }
 
-/* ==================== RESULT BOX ==================== */
 .result-box {
   background-color: rgba(129, 70, 200, 0.15);
   border-left: 3px solid var(--accent);
@@ -377,7 +364,6 @@ a {
   margin-top: 16px;
 }
 
-/* ==================== KARAKTER PROFİL KARTLARI ==================== */
 .profile-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -462,7 +448,6 @@ a {
   padding-bottom: 2px;
 }
 
-/* ==================== VS KARŞILAŞTIRMA ==================== */
 .vs-wrapper {
   background-color: var(--card);
   border: 1px solid var(--border);
@@ -589,7 +574,7 @@ a {
   border-top: 1px solid var(--border);
 }
 
-/* ==================== OYLAMA SİSTEMİ ==================== */
+/* ==================== OYLAMA ==================== */
 .vote-section {
   margin-top: 20px;
   padding-top: 18px;
@@ -634,11 +619,11 @@ a {
 }
 
 .goku-fill {
-  background: linear-gradient(90deg, #4a9eff, #7bb8ff);
+  background: linear-gradient(90deg, #2563EB, var(--goku-blue));
 }
 
 .azrak-fill {
-  background: linear-gradient(90deg, var(--accent), #a66ee0);
+  background: linear-gradient(90deg, #7C3AED, var(--azrak-purple));
 }
 
 .vote-total {
@@ -734,7 +719,6 @@ a {
   color: #ffb3b3;
 }
 
-/* ==================== PROFİL MODAL ==================== */
 .profile-modal {
   display: none;
   position: fixed;
@@ -888,7 +872,6 @@ a {
   line-height: 1.7;
 }
 
-/* ==================== FOOTER ==================== */
 .site-footer {
   text-align: center;
   padding: 32px 20px;
@@ -904,7 +887,6 @@ a {
   opacity: 0.6;
 }
 
-/* ==================== LIGHTBOX ==================== */
 .lightbox {
   display: none;
   position: fixed;
@@ -941,7 +923,6 @@ a {
   user-select: none;
 }
 
-/* ==================== MOBİL UYUM ==================== */
 @media (max-width: 900px) {
   .weapon-card {
     grid-template-columns: 1fr;
@@ -965,7 +946,6 @@ a {
   .menu-toggle {
     display: flex;
   }
-
   .main-nav {
     position: absolute;
     top: 64px;
@@ -977,73 +957,58 @@ a {
     overflow: hidden;
     transition: max-height 0.3s ease;
   }
-
   .main-nav.open {
     max-height: 800px;
     overflow-y: auto;
   }
-
   .main-nav ul {
     flex-direction: column;
     gap: 0;
     padding: 8px 12px 16px;
   }
-
   .main-nav a {
     padding: 11px 12px;
     font-size: 0.9rem;
     border-bottom: 1px solid rgba(201, 165, 255, 0.07);
   }
-
   .hero-img {
     height: 340px;
   }
-
   .hero-overlay {
     padding: 24px 16px 36px;
   }
-
   .container {
     padding: 0 14px 60px;
   }
-
   .container-section {
     padding: 0 14px;
     margin-top: 44px;
   }
-
   .card {
     padding: 18px;
   }
-
   .emblem-card {
     flex-direction: column;
     text-align: center;
     gap: 14px;
   }
-
   .wiki-section {
     margin-top: 44px;
   }
-
   .vs-wrapper {
     padding: 20px 12px;
   }
-
   .vs-arena {
     gap: 6px;
   }
-
   .profile-modal {
     padding: 10px;
   }
-
   .profile-modal-inner {
     padding: 20px 16px;
     margin: 20px auto;
     border-radius: 12px;
   }
-
   .profile-modal-close {
     top: 10px;
     right: 16px;
@@ -1055,56 +1020,44 @@ a {
   body {
     font-size: 15px;
   }
-
   .hero-img {
     height: 260px;
   }
-
   .hero-title {
     letter-spacing: 3px;
   }
-
   .info-grid {
     grid-template-columns: 1fr;
   }
-
   .grid-3,
   .grid-2 {
     grid-template-columns: 1fr;
   }
-
   .vs-arena {
     grid-template-columns: 1fr auto 1fr;
     gap: 4px;
   }
-
   .vs-badge {
     font-size: 1.6rem;
     letter-spacing: 0;
   }
-
   .vs-fighter-name {
     font-size: 0.82rem;
   }
-
   .vs-fighter-form {
     font-size: 0.62rem;
     letter-spacing: 0.8px;
   }
-
   .vs-fighter-img-wrap {
     border-radius: 8px;
   }
-
   .vs-actions {
     gap: 8px;
   }
-
   .vs-btn {
     padding: 8px 14px;
     font-size: 0.75rem;
   }
-
   .vote-buttons {
     flex-direction: column;
   }
