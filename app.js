@@ -1,12 +1,15 @@
 /* ==================== KARAKTER VERİLERİ ==================== */
 /*
-  YENİ KARAKTER EKLEMEK İÇİN:
-  Sadece aşağıdaki CHARACTERS dizisine yeni bir nesne ekleyin.
-  Profil kartı, VS karşılaştırma ve detay sayfası otomatik güncellenir.
+  YENİ KARAKTER / FORM EKLEMEK İÇİN:
+  CHARACTERS dizisine yeni bir nesne ekleyin.
+  Aynı karakterin farklı formları için ayrı id kullanın (örn: 'cc-goku-base', 'cc-goku-universal-blue').
+  "groupId" alanı aynı karakterin formlarını gruplamak için kullanılır.
 */
 const CHARACTERS = [
+  // --- CC GOKU: BASE FORM ---
   {
-    id: 'cc-goku',
+    id: 'cc-goku-base',
+    groupId: 'cc-goku',
     name: 'CC Goku',
     form: 'Base Form',
     title: '',
@@ -18,21 +21,47 @@ const CHARACTERS = [
       'Enerji Kaynağı': 'Ki',
       'Evren': 'Dragon Ball Heroes / CC'
     },
-    description: 'CC Goku, Dragon Ball Heroes evreninden gelen Saiyan savaşçısıdır. Base formunda dahi büyük bir savaş deneyimine ve potansiyele sahiptir. Azrak ile karşılaştırmada temel formdaki güç seviyesi esas alınır.',
+    description: 'CC Goku, Dragon Ball Heroes evreninden gelen Saiyan savaşçısıdır. Base formunda dahi büyük bir savaş deneyimine ve potansiyele sahiptir.',
     abilities: [
       'Ki kontrolü ve enerji patlamaları',
       'Yüksek hız ve refleksler',
-      'Dövüş sanatları ustalığı',
-      'Dönüşüm potansiyeli (Base Form dışında)'
+      'Dövüş sanatları ustalığı'
     ],
     weaknesses: [
-      'Bu karşılaştırmada Base Form ile sınırlıdır',
+      'Bu form temel formdur; dönüşüm güçlerine erişimi yoktur',
       'Kozmik/zaman güçlerine erişimi yoktur',
       'Boyutlar arası manipülasyon yeteneği bulunmaz'
     ]
   },
+
+  // --- CC GOKU: UNIVERSAL BLUE FORM ---
+  {
+    id: 'cc-goku-universal-blue',
+    groupId: 'cc-goku',
+    name: 'CC Goku',
+    form: 'Universal Blue Form',
+    title: '',
+    image: 'https://i.imgur.com/qG5bznM.jpeg',
+    stats: {
+      'Unvan': 'Saiyan Savaşçısı',
+      'Form': 'Universal Blue',
+      'Tür': 'Saiyan',
+      'Enerji Kaynağı': 'Doğrulanmayı bekliyor',
+      'Evren': 'Dragon Ball Heroes / CC'
+    },
+    description: 'CC Goku\'nun Universal Blue formu. Bu formun kesin özellikleri ve güç seviyesi hakkında güvenilir, doğrulanmış bir kaynak henüz mevcut değildir. Bilgiler uydurulmamış, doğrulanmayı bekleyen alanlar boş bırakılmıştır.',
+    abilities: [
+      'Doğrulanmayı bekliyor'
+    ],
+    weaknesses: [
+      'Doğrulanmayı bekliyor'
+    ]
+  },
+
+  // --- AZRAK ---
   {
     id: 'azrak',
+    groupId: 'azrak',
     name: 'Azrak',
     form: '',
     title: 'The Dark Emperor',
@@ -65,15 +94,21 @@ const CHARACTERS = [
 /* ==================== KARŞILAŞTIRMALAR ==================== */
 /*
   YENİ KARŞILAŞTIRMA EKLEMEK İÇİN:
-  COMPARISONS dizisine { id, leftId, rightId } ekleyin.
+  COMPARISONS dizisine { id, leftId, rightId, label } ekleyin.
   Karakterler CHARACTERS dizisinde id ile bulunmalıdır.
 */
 const COMPARISONS = [
   {
-    id: 'cc-goku-vs-azrak',
-    leftId: 'cc-goku',
+    id: 'cc-goku-base-vs-azrak',
+    leftId: 'cc-goku-base',
     rightId: 'azrak',
     label: 'CC GOKU (BASE FORM) VS AZRAK'
+  },
+  {
+    id: 'cc-goku-universal-blue-vs-azrak',
+    leftId: 'cc-goku-universal-blue',
+    rightId: 'azrak',
+    label: 'CC GOKU (UNIVERSAL BLUE) VS AZRAK'
   }
 ];
 
@@ -95,7 +130,7 @@ function renderProfileCards() {
 
     card.innerHTML = `
       <div class="profile-card-img-wrap">
-        <img src="${char.image}" alt="${char.name}" loading="lazy">
+        <img src="${char.image}" alt="${char.name}${char.form ? ' – ' + char.form : ''}" loading="lazy">
       </div>
       <div class="profile-card-body">
         ${char.form ? `<span class="profile-card-form">${char.form}</span>` : ''}
@@ -105,8 +140,7 @@ function renderProfileCards() {
       </div>
     `;
 
-    card.addEventListener('click', (e) => {
-      // Görsele tıklama lightbox yerine profili açar
+    card.addEventListener('click', () => {
       openProfileModal(char.id);
     });
 
@@ -133,7 +167,7 @@ function renderComparisons() {
       <div class="vs-arena">
         <div class="vs-fighter" data-char-id="${left.id}">
           <div class="vs-fighter-img-wrap">
-            <img src="${left.image}" alt="${left.name}" loading="lazy">
+            <img src="${left.image}" alt="${left.name}${left.form ? ' – ' + left.form : ''}" loading="lazy">
           </div>
           <div class="vs-fighter-name">${left.name}</div>
           ${left.form ? `<div class="vs-fighter-form">${left.form}</div>` : ''}
@@ -144,7 +178,7 @@ function renderComparisons() {
         </div>
         <div class="vs-fighter" data-char-id="${right.id}">
           <div class="vs-fighter-img-wrap">
-            <img src="${right.image}" alt="${right.name}" loading="lazy">
+            <img src="${right.image}" alt="${right.name}${right.form ? ' – ' + right.form : ''}" loading="lazy">
           </div>
           <div class="vs-fighter-name">${right.name}</div>
           ${right.form ? `<div class="vs-fighter-form">${right.form}</div>` : ''}
@@ -152,19 +186,17 @@ function renderComparisons() {
         </div>
       </div>
       <div class="vs-actions">
-        <a href="javascript:void(0)" class="vs-btn" data-char-id="${left.id}">${left.name} Profilini Aç</a>
-        <a href="javascript:void(0)" class="vs-btn" data-char-id="${right.id}">${right.name} Profilini Aç</a>
+        <a href="javascript:void(0)" class="vs-btn" data-char-id="${left.id}">${left.name}${left.form ? ' (' + left.form + ')' : ''} Profilini Aç</a>
+        <a href="javascript:void(0)" class="vs-btn" data-char-id="${right.id}">${right.name}${right.form ? ' (' + right.form + ')' : ''} Profilini Aç</a>
       </div>
     `;
 
-    // Fighter tıklama
     box.querySelectorAll('.vs-fighter').forEach(f => {
       f.addEventListener('click', () => {
         openProfileModal(f.dataset.charId);
       });
     });
 
-    // Buton tıklama
     box.querySelectorAll('.vs-btn').forEach(b => {
       b.addEventListener('click', () => {
         openProfileModal(b.dataset.charId);
@@ -187,7 +219,7 @@ function openProfileModal(charId) {
   const statsHTML = Object.entries(char.stats).map(([k, v]) => `
     <div class="profile-stat-row">
       <span class="profile-stat-label">${k}</span>
-      <span class="profile-stat-value">${v}</span>
+      <span class="profile-stat-value">${v}${v === 'Doğrulanmayı bekliyor' ? '<span class="pending-note">— güvenilir kaynak bekleniyor</span>' : ''}</span>
     </div>
   `).join('');
 
@@ -196,7 +228,7 @@ function openProfileModal(charId) {
 
   profileModalInner.innerHTML = `
     <div class="profile-detail-header">
-      <img src="${char.image}" alt="${char.name}" class="profile-detail-img">
+      <img src="${char.image}" alt="${char.name}${char.form ? ' – ' + char.form : ''}" class="profile-detail-img">
       <div>
         <h2 class="profile-detail-name">${char.name}</h2>
         ${char.form ? `<span class="profile-detail-form">${char.form}</span>` : ''}
@@ -226,7 +258,6 @@ function openProfileModal(charId) {
   profileModal.classList.add('active');
   document.body.style.overflow = 'hidden';
 
-  // Modal içindeki görsele tıklanınca lightbox DEĞİL, hiçbir şey yapma
   const modalImg = profileModalInner.querySelector('.profile-detail-img');
   if (modalImg) {
     modalImg.style.cursor = 'default';
@@ -282,7 +313,6 @@ const lightboxClose = document.getElementById('lightboxClose');
 
 document.querySelectorAll('img').forEach(img => {
   if (img.id === 'lightboxImg') return;
-  // Profil kartları ve VS görselleri tıklanınca modal açılır, lightbox açılmasın
   if (img.closest('.profile-card') || img.closest('.vs-fighter') || img.closest('.profile-modal')) return;
 
   img.addEventListener('click', (e) => {
