@@ -169,6 +169,16 @@ a {
   padding: 0 20px 80px;
 }
 
+.container-section {
+  max-width: 1100px;
+  margin: 56px auto 0;
+  padding: 0 20px;
+}
+
+.container-section .container {
+  padding: 0;
+}
+
 /* ==================== SECTIONS ==================== */
 .wiki-section {
   margin-top: 56px;
@@ -183,6 +193,11 @@ a {
   padding-bottom: 10px;
   border-bottom: 2px solid var(--accent);
   display: inline-block;
+}
+
+.section-intro {
+  margin-bottom: 22px;
+  opacity: 0.85;
 }
 
 /* ==================== CARDS ==================== */
@@ -362,6 +377,366 @@ a {
   margin-top: 16px;
 }
 
+/* ==================== KARAKTER PROFİL KARTLARI ==================== */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.profile-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+
+.profile-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 32px rgba(129, 70, 200, 0.28);
+}
+
+.profile-card-img-wrap {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: linear-gradient(180deg, #2a1b3d 0%, #171020 100%);
+}
+
+.profile-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.profile-card:hover .profile-card-img-wrap img {
+  transform: scale(1.04);
+}
+
+.profile-card-body {
+  padding: 16px 18px 18px;
+}
+
+.profile-card-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--heading);
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.profile-card-form {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text);
+  background-color: var(--accent-soft);
+  border: 1px solid var(--border);
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+.profile-card-title {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  margin-bottom: 12px;
+}
+
+.profile-card-btn {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: var(--heading);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+/* ==================== VS KARŞILAŞTIRMA ==================== */
+.vs-wrapper {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 20px;
+}
+
+.vs-header {
+  text-align: center;
+  margin-bottom: 22px;
+  font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--heading);
+  text-transform: uppercase;
+}
+
+.vs-arena {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 14px;
+}
+
+.vs-fighter {
+  text-align: center;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.vs-fighter:hover {
+  opacity: 0.88;
+}
+
+.vs-fighter-img-wrap {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #2a1b3d 0%, #171020 100%);
+  border: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+
+.vs-fighter-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.vs-fighter-name {
+  font-size: clamp(0.95rem, 2.4vw, 1.15rem);
+  font-weight: 800;
+  color: var(--heading);
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.vs-fighter-form {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  opacity: 0.65;
+  margin-top: 3px;
+}
+
+.vs-fighter-title {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-top: 3px;
+  font-style: italic;
+}
+
+.vs-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+}
+
+.vs-badge {
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-weight: 900;
+  color: var(--heading);
+  letter-spacing: 2px;
+  text-shadow: 0 0 24px rgba(129, 70, 200, 0.7);
+  font-style: italic;
+  user-select: none;
+}
+
+.vs-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.vs-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: var(--text);
+  background-color: transparent;
+  border: 1px solid var(--accent);
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+}
+
+.vs-btn:hover {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+/* ==================== PROFİL MODAL ==================== */
+.profile-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background-color: rgba(10, 6, 16, 0.94);
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.profile-modal.active {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.profile-modal-inner {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  max-width: 860px;
+  width: 100%;
+  padding: 30px;
+  margin: 40px auto;
+  position: relative;
+}
+
+.profile-modal-close {
+  position: fixed;
+  top: 18px;
+  right: 26px;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--heading);
+  cursor: pointer;
+  font-weight: 300;
+  user-select: none;
+  z-index: 510;
+}
+
+.profile-detail-header {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.profile-detail-img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.profile-detail-name {
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-weight: 900;
+  color: var(--heading);
+  letter-spacing: 1px;
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+
+.profile-detail-form {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  background-color: var(--accent-soft);
+  border: 1px solid var(--border);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.profile-detail-title {
+  font-size: 1rem;
+  font-style: italic;
+  opacity: 0.85;
+  margin-bottom: 14px;
+}
+
+.profile-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.88rem;
+  gap: 12px;
+}
+
+.profile-stat-row:last-child {
+  border-bottom: none;
+}
+
+.profile-stat-label {
+  font-weight: 700;
+  color: var(--heading);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-size: 0.72rem;
+  flex-shrink: 0;
+}
+
+.profile-stat-value {
+  text-align: right;
+  opacity: 0.92;
+}
+
+.profile-detail-section {
+  margin-top: 22px;
+}
+
+.profile-detail-section h4 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--heading);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.profile-detail-section ul {
+  list-style: none;
+}
+
+.profile-detail-section ul li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.profile-detail-section ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+.profile-detail-desc {
+  font-size: 0.92rem;
+  opacity: 0.92;
+  line-height: 1.7;
+}
+
 /* ==================== FOOTER ==================== */
 .site-footer {
   text-align: center;
@@ -426,6 +801,13 @@ a {
   .two-col {
     grid-template-columns: 1fr;
   }
+  .profile-detail-header {
+    grid-template-columns: 1fr;
+  }
+  .profile-detail-img {
+    max-width: 260px;
+    margin: 0 auto;
+  }
 }
 
 @media (max-width: 768px) {
@@ -446,7 +828,7 @@ a {
   }
 
   .main-nav.open {
-    max-height: 600px;
+    max-height: 800px;
     overflow-y: auto;
   }
 
@@ -474,6 +856,11 @@ a {
     padding: 0 14px 60px;
   }
 
+  .container-section {
+    padding: 0 14px;
+    margin-top: 44px;
+  }
+
   .card {
     padding: 18px;
   }
@@ -486,6 +873,30 @@ a {
 
   .wiki-section {
     margin-top: 44px;
+  }
+
+  .vs-wrapper {
+    padding: 20px 12px;
+  }
+
+  .vs-arena {
+    gap: 6px;
+  }
+
+  .profile-modal {
+    padding: 10px;
+  }
+
+  .profile-modal-inner {
+    padding: 20px 16px;
+    margin: 20px auto;
+    border-radius: 12px;
+  }
+
+  .profile-modal-close {
+    top: 10px;
+    right: 16px;
+    font-size: 2.2rem;
   }
 }
 
@@ -509,5 +920,37 @@ a {
   .grid-3,
   .grid-2 {
     grid-template-columns: 1fr;
+  }
+
+  .vs-arena {
+    grid-template-columns: 1fr auto 1fr;
+    gap: 4px;
+  }
+
+  .vs-badge {
+    font-size: 1.6rem;
+    letter-spacing: 0;
+  }
+
+  .vs-fighter-name {
+    font-size: 0.82rem;
+  }
+
+  .vs-fighter-form {
+    font-size: 0.62rem;
+    letter-spacing: 0.8px;
+  }
+
+  .vs-fighter-img-wrap {
+    border-radius: 8px;
+  }
+
+  .vs-actions {
+    gap: 8px;
+  }
+
+  .vs-btn {
+    padding: 8px 14px;
+    font-size: 0.75rem;
   }
 }
