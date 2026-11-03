@@ -2,7 +2,7 @@
 /*
   YENİ KARAKTER / FORM EKLEMEK İÇİN:
   CHARACTERS dizisine yeni bir nesne ekleyin.
-  Aynı karakterin farklı formları için ayrı id kullanın (örn: 'cc-goku-base', 'cc-goku-universal-blue').
+  Aynı karakterin farklı formları için ayrı id kullanın.
   "groupId" alanı aynı karakterin formlarını gruplamak için kullanılır.
 */
 const CHARACTERS = [
@@ -34,27 +34,31 @@ const CHARACTERS = [
     ]
   },
 
-  // --- CC GOKU: UNIVERSAL BLUE FORM ---
+  // --- CC GOKU: SUPER SAIYAN BLUE – UNIVERSE TREE POWER (halk arasında "Universal Blue") ---
   {
     id: 'cc-goku-universal-blue',
     groupId: 'cc-goku',
     name: 'CC Goku',
-    form: 'Universal Blue Form',
+    form: 'Super Saiyan Blue: Universe Tree Power',
     title: '',
     image: 'https://i.imgur.com/qG5bznM.jpeg',
     stats: {
       'Unvan': 'Saiyan Savaşçısı',
-      'Form': 'Universal Blue',
+      'Form': 'Super Saiyan Blue: Universe Tree Power (halk arasında "Universal Blue")',
       'Tür': 'Saiyan',
-      'Enerji Kaynağı': 'Doğrulanmayı bekliyor',
-      'Evren': 'Dragon Ball Heroes / CC'
+      'Enerji Kaynağı': 'Universe Tree enerjisi (Fu\'dan emilerek özümsenmiş)',
+      'Evren': 'Super Dragon Ball Heroes (promosyon anime / arcade)'
     },
-    description: 'CC Goku\'nun Universal Blue formu. Bu formun kesin özellikleri ve güç seviyesi hakkında güvenilir, doğrulanmış bir kaynak henüz mevcut değildir. Bilgiler uydurulmamış, doğrulanmayı bekleyen alanlar boş bırakılmıştır.',
+    description: 'Super Dragon Ball Heroes\'ta Goku\'nun Universe Tree\'nin gücünü Fu\'dan alıp Super Saiyan Blue formu aracılığıyla özümsemesiyle ortaya çıkan form. Resmî adı "Super Saiyan Blue: Universe Tree Power" olarak geçer; "Universal Blue" ise hayran topluluğunun yaygın kullanımıdır [citation:4][citation:14][citation:15].',
     abilities: [
-      'Doğrulanmayı bekliyor'
+      'Universe Tree\'den emilen tanrısal enerjiyi Super Saiyan Blue aracılığıyla kanalize etme [citation:14]',
+      'Fu\'nun planlarını durdurabilecek düzeyde güç artışı [citation:14]',
+      'Multiversal ölçekte enerji erişimi (kaynaklarda "multiversal level" olarak nitelendirilir) [citation:4][citation:15]'
     ],
     weaknesses: [
-      'Doğrulanmayı bekliyor'
+      'Universe Tree gücünün kalıcılığı veya formun sürdürülebilirliği hakkında doğrulanmış bilgi bulunamadı',
+      'Formun enerji maliyeti veya tükenme koşulları hakkında doğrulanmış bilgi bulunamadı',
+      'Resmî kaynaklarda belirtilmiş spesifik zayıflık bulunamadı'
     ]
   },
 
@@ -92,11 +96,6 @@ const CHARACTERS = [
 ];
 
 /* ==================== KARŞILAŞTIRMALAR ==================== */
-/*
-  YENİ KARŞILAŞTIRMA EKLEMEK İÇİN:
-  COMPARISONS dizisine { id, leftId, rightId, label } ekleyin.
-  Karakterler CHARACTERS dizisinde id ile bulunmalıdır.
-*/
 const COMPARISONS = [
   {
     id: 'cc-goku-base-vs-azrak',
@@ -108,7 +107,7 @@ const COMPARISONS = [
     id: 'cc-goku-universal-blue-vs-azrak',
     leftId: 'cc-goku-universal-blue',
     rightId: 'azrak',
-    label: 'CC GOKU (UNIVERSAL BLUE) VS AZRAK'
+    label: 'CC GOKU (SSB: UNIVERSE TREE POWER) VS AZRAK'
   }
 ];
 
@@ -219,7 +218,7 @@ function openProfileModal(charId) {
   const statsHTML = Object.entries(char.stats).map(([k, v]) => `
     <div class="profile-stat-row">
       <span class="profile-stat-label">${k}</span>
-      <span class="profile-stat-value">${v}${v === 'Doğrulanmayı bekliyor' ? '<span class="pending-note">— güvenilir kaynak bekleniyor</span>' : ''}</span>
+      <span class="profile-stat-value">${v}</span>
     </div>
   `).join('');
 
