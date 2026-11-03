@@ -1,4 +1,3 @@
-/* ==================== FIREBASE BAĞLANTISI ==================== */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
 import {
   getFirestore,
@@ -29,7 +28,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-/* ==================== KARAKTER VERİLERİ ==================== */
 const CHARACTERS = [
   {
     id: 'cc-goku-universal-blue',
@@ -87,7 +85,6 @@ const CHARACTERS = [
   }
 ];
 
-/* ==================== KARŞILAŞTIRMA ==================== */
 const COMPARISONS = [
   {
     id: 'cc-goku-universal-blue-vs-azrak',
@@ -97,19 +94,17 @@ const COMPARISONS = [
   }
 ];
 
-/* ==================== DURUM ==================== */
 let currentUser = null;
 let currentVoteData = { goku: 0, azrak: 0 };
 let hasVoted = false;
 let isVoting = false;
 let voteUnsubscribe = null;
+let authReady = false;
 
-/* ==================== YARDIMCILAR ==================== */
 function getCharacter(id) {
   return CHARACTERS.find(c => c.id === id);
 }
 
-/* ==================== TOAST ==================== */
 function showToast(msg, isError = false) {
   const toast = document.getElementById('voteToast');
   if (!toast) return;
@@ -133,12 +128,12 @@ function renderVoteResults() {
     <div class="vote-stats">
       <div class="vote-stat-row">
         <span class="vote-stat-name">CC Goku</span>
-        <span class="vote-stat-count">${currentVoteData.goku || 0} oy</span>
+        <span class="vote-stat-count">${currentVoteData.goku || 0} oy (%${gokuPct})</span>
       </div>
       <div class="vote-bar-track"><div class="vote-bar-fill goku-fill" style="width:${gokuPct}%"></div></div>
       <div class="vote-stat-row">
         <span class="vote-stat-name">Azrak</span>
-        <span class="vote-stat-count">${currentVoteData.azrak || 0} oy</span>
+        <span class="vote-stat-count">${currentVoteData.azrak || 0} oy (%${azrakPct})</span>
       </div>
       <div class="vote-bar-track"><div class="vote-bar-fill azrak-fill" style="width:${azrakPct}%"></div></div>
       <div class="vote-total">Toplam: ${total} oy</div>
@@ -150,6 +145,14 @@ function updateVoteButtons() {
   const btnGoku = document.getElementById('voteGokuBtn');
   const btnAzrak = document.getElementById('voteAzrakBtn');
   if (!btnGoku || !btnAzrak) return;
+
+  if (!authReady) {
+    btnGoku.disabled = true;
+    btnAzrak.disabled = true;
+    btnGoku.textContent = 'Bağlanıyor...';
+    btnAzrak.textContent = 'Bağlanıyor...';
+    return;
+  }
 
   if (isVoting) {
     btnGoku.disabled = true;
@@ -174,7 +177,6 @@ function updateVoteButtons() {
   }
 }
 
-/* ==================== OY KONTROLÜ ==================== */
 async function checkIfVoted() {
   if (!currentUser) return;
   try {
@@ -191,15 +193,13 @@ async function checkIfVoted() {
   }
 }
 
-/* ==================== OY VERME ==================== */
+/* ==================== OY VERME (GERÇEK FIREBASE) ==================== */
 async function castVote(characterId) {
   if (!currentUser || hasVoted || isVoting) return;
 
   isVoting = true;
   const btnGoku = document.getElementById('voteGokuBtn');
   const btnAzrak = document.getElementById('voteAzrakBtn');
-
-  // Hangi butona basıldıysa onu loading yap, diğerini devre dışı bırak
   const activeBtn = characterId === 'cc-goku-universal-blue' ? btnGoku : btnAzrak;
   const otherBtn = characterId === 'cc-goku-universal-blue' ? btnAzrak : btnGoku;
 
@@ -248,7 +248,6 @@ async function castVote(characterId) {
   } catch (error) {
     console.error('Oy verme hatası:', error);
     showToast(error.message || 'Oy verme başarısız oldu.', true);
-    // Başarısızsa oy verilmiş gibi gösterme
     hasVoted = false;
   } finally {
     isVoting = false;
@@ -269,11 +268,13 @@ function initVoting() {
       currentVoteData = { goku: 0, azrak: 0 };
     }
     renderVoteResults();
+  }, (error) => {
+    console.error('Oy dinleyici hatası:', error);
+    showToast('Oy verileri yüklenemedi.', true);
   });
 
   checkIfVoted();
 
-  // Buton dinleyicileri
   const btnGoku = document.getElementById('voteGokuBtn');
   const btnAzrak = document.getElementById('voteAzrakBtn');
   if (btnGoku) btnGoku.onclick = () => castVote('cc-goku-universal-blue');
@@ -283,14 +284,19 @@ function initVoting() {
 /* ==================== AUTH ==================== */
 onAuthStateChanged(auth, (user) => {
   currentUser = user;
+  authReady = true;
   if (user) {
     initVoting();
+  } else {
+    updateVoteButtons();
   }
 });
 
 signInAnonymously(auth).catch((error) => {
   console.error('Anonim oturum açma başarısız:', error);
   showToast('Oturum açma başarısız. Oylama devre dışı.', true);
+  authReady = true;
+  updateVoteButtons();
 });
 
 /* ==================== PROFİL KARTLARI ==================== */
@@ -354,8 +360,8 @@ function renderComparisons() {
       <div class="vote-section">
         <div id="voteResults"></div>
         <div class="vote-buttons">
-          <button class="vote-btn" id="voteGokuBtn">CC Goku'ya Oy Ver</button>
-          <button class="vote-btn" id="voteAzrakBtn">Azrak'a Oy Ver</button>
+          <button class="vote-btn" id="voteGokuBtn">Bağlanıyor...</button>
+          <button class="vote-btn" id="voteAzrakBtn">Bağlanıyor...</button>
         </div>
       </div>
       <div class="vs-actions">
@@ -373,6 +379,9 @@ function renderComparisons() {
 
     wrapper.appendChild(box);
   });
+
+  renderVoteResults();
+  updateVoteButtons();
 }
 
 /* ==================== PROFİL MODAL ==================== */
