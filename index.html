@@ -77,21 +77,17 @@
   <section id="profiller" class="wiki-section container-section">
     <div class="container">
       <h2 class="section-title">Character Profiles</h2>
-      <p class="section-desc section-intro">Karakter kartına tıklayarak detaylı profil sayfasını açabilirsiniz. Çoklu forma sahip karakterlerde her form ayrı kart olarak gösterilir.</p>
-      <div class="profile-grid" id="profileGrid">
-        <!-- JS tarafından doldurulur -->
-      </div>
+      <p class="section-desc section-intro">Karakter kartına tıklayarak detaylı profil sayfasını açabilirsiniz.</p>
+      <div class="profile-grid" id="profileGrid"></div>
     </div>
   </section>
 
-  <!-- ==================== GÜÇ KARŞILAŞTIRMA ==================== -->
+  <!-- ==================== GÜÇ KARŞILAŞTIRMA + OYLAMA ==================== -->
   <section id="karsilastirma" class="wiki-section container-section">
     <div class="container">
       <h2 class="section-title">Power Comparison</h2>
-      <p class="section-desc section-intro">Karakterleri yan yana karşılaştırın. Görsele veya isme tıklayarak profili açın.</p>
-      <div class="vs-wrapper" id="vsWrapper">
-        <!-- JS tarafından doldurulur -->
-      </div>
+      <p class="section-desc section-intro">Karakterleri yan yana karşılaştırın ve oyunuzu verin.</p>
+      <div class="vs-wrapper" id="vsWrapper"></div>
     </div>
   </section>
 
@@ -319,12 +315,13 @@
 
   <!-- ==================== PROFİL MODAL ==================== -->
   <div class="profile-modal" id="profileModal">
-    <div class="profile-modal-inner" id="profileModalInner">
-      <!-- JS tarafından doldurulur -->
-    </div>
+    <div class="profile-modal-inner" id="profileModalInner"></div>
     <span class="profile-modal-close" id="profileModalClose">&times;</span>
   </div>
 
-  <script src="app.js"></script>
+  <!-- ==================== OYLAMA TOAST ==================== -->
+  <div class="vote-toast" id="voteToast"></div>
+
+  <script type="module" src="app.js"></script>
 </body>
 </html>
