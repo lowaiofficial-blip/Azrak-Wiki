@@ -48,6 +48,8 @@
       </button>
       <nav class="main-nav" id="mainNav">
         <ul>
+          <li><a href="#profiller">Karakterler</a></li>
+          <li><a href="#karsilastirma">Karşılaştırma</a></li>
           <li><a href="#genel">Genel Bilgiler</a></li>
           <li><a href="#gorunus">Görünüş & Kişilik</a></li>
           <li><a href="#hikaye">Hikâyesi</a></li>
@@ -68,6 +70,28 @@
     <div class="hero-overlay">
       <h1 class="hero-title">AZRAK</h1>
       <p class="hero-subtitle">Kozmik Varlık · Zaman ve Boyutların Ötesinde</p>
+    </div>
+  </section>
+
+  <!-- ==================== KARAKTER PROFİLLERİ ==================== -->
+  <section id="profiller" class="wiki-section container-section">
+    <div class="container">
+      <h2 class="section-title">Character Profiles</h2>
+      <p class="section-desc section-intro">Karakter kartına tıklayarak detaylı profil sayfasını açabilirsiniz.</p>
+      <div class="profile-grid" id="profileGrid">
+        <!-- JS tarafından doldurulur -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== GÜÇ KARŞILAŞTIRMA ==================== -->
+  <section id="karsilastirma" class="wiki-section container-section">
+    <div class="container">
+      <h2 class="section-title">Power Comparison</h2>
+      <p class="section-desc section-intro">Karakterleri yan yana karşılaştırın. Görsele veya isme tıklayarak profili açın.</p>
+      <div class="vs-wrapper" id="vsWrapper">
+        <!-- JS tarafından doldurulur -->
+      </div>
     </div>
   </section>
 
@@ -291,6 +315,14 @@
   <div class="lightbox" id="lightbox">
     <span class="lightbox-close" id="lightboxClose">&times;</span>
     <img src="" alt="" class="lightbox-img" id="lightboxImg">
+  </div>
+
+  <!-- ==================== PROFİL MODAL ==================== -->
+  <div class="profile-modal" id="profileModal">
+    <div class="profile-modal-inner" id="profileModalInner">
+      <!-- JS tarafından doldurulur -->
+    </div>
+    <span class="profile-modal-close" id="profileModalClose">&times;</span>
   </div>
 
   <script src="app.js"></script>
